@@ -16,8 +16,7 @@ def get_user_valid_location(lat: float = None, lon: float = None, user=None) -> 
         return lat, lon
 
     if user is None or not user.is_home_ready:
-        raise UserWarning(
-            "%s" % ERROR_HOME_LOCATION)
+        raise UserWarning(ERROR_HOME_LOCATION_MESSAGE)
     else:
         return user.lat, user.lon
 

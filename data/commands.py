@@ -23,10 +23,12 @@ def start(bot, update):
 def subscribe(bot, update):
     user = get_user_by_chat_id(update.message.chat.id)
     try:
-        but = [InlineKeyboardButton("Отписаться", callback_data="unsub")] if user.is_sub else [InlineKeyboardButton("Подписаться", callback_data="sub")]
+        but = [InlineKeyboardButton("Отписаться", callback_data="unsub")] if user.is_sub else [
+            InlineKeyboardButton("Подписаться", callback_data="sub")]
 
         update.message.reply_text(SUBSCRIBE_CALL_TEXT)
-        update.message.reply_text(text="Статус вашей подписки: " + ("активна" if user.is_sub else "не активирована"), reply_markup=InlineKeyboardMarkup([but]))
+        update.message.reply_text(text="Статус вашей подписки: " + ("активна" if user.is_sub else "не активирована"),
+                                  reply_markup=InlineKeyboardMarkup([but]))
     except Exception as er:
         print(er)
 
