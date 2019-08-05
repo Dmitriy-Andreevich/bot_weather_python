@@ -2,7 +2,7 @@ from datetime import datetime
 
 import requests
 
-from data.models.model import get_user_by_chat_id, User
+from data.models.user import get_user_by_chat_id, User
 from data.properties import *
 
 

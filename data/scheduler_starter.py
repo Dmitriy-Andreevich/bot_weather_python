@@ -5,7 +5,7 @@ import schedule
 
 from data.bot_starter import bot_el
 from data.commands import weather_on_today
-from data.models.model import get_weather_subscribers
+from data.models.user import get_weather_subscribers
 
 cease_continuous_run = threading.Event()
 

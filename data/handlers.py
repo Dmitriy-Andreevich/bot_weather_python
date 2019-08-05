@@ -4,7 +4,7 @@ from functools import wraps
 from telegram import ChatAction
 
 from data.commands import *
-from data.models.model import update_user_location, set_user_subscribe
+from data.models.user import update_user_location, set_user_subscribe
 from data.properties import *
 
 logger = logging.getLogger(__name__)

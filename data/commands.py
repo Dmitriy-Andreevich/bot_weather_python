@@ -4,7 +4,7 @@ import numpy
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup
 
 from data.image_drawer import create_weather_image
-from data.models.model import add_user_if_not_exist, get_user_by_chat_id
+from data.models.user import add_user_if_not_exist, get_user_by_chat_id
 from data.properties import *
 from data.util import get_request_data, get_user_valid_location
 
@@ -41,12 +41,11 @@ def profile(bot, update):
         "\nИнформация о вашем аккаунте:"
         "\nСтатус подписки на функцию \"Погода утром\" : " + (
             "подписан " if user.is_sub else "не подписан") +
-        "\nВаша домашняя геолокация: " + ("" if user.is_home_ready else "не установлено"))
+        "\nВаша домашняя геолокация: " + ("" if user.is_home_ready else "не установлена"))
 
     if user.is_home_ready:
         bot.sendLocation(update.message.chat.id, user.lat, user.lon)
-        update.message.reply_text(
-            CHANGE_LOCATION_TEXT)
+        update.message.reply_text(CHANGE_LOCATION_TEXT)
 
 
 def weather_on_today(bot, chat_id: int, lat=None, lon=None):
@@ -92,4 +91,4 @@ def get_weak_keyboard(days, user, lat=None, lon=None) -> map:
 
 
 def help_me(bot, update):
-    update.message.reply_text("Информация об основных функциях бота")
+    update.message.reply_text(HELP_TEXT)
