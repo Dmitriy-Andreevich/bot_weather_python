@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/user/PycharmProjects/telegram-weather-bot/data/main.py", line 1, in <module>
+    from data.bot_starter import bind_bot
+ModuleNotFoundError: No module named 'data'
