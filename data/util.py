@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import requests
+from telegram import InlineKeyboardButton
 
 from data.models.user import get_user_by_chat_id, User
 from data.properties import *
@@ -29,10 +30,21 @@ def get_modify_temp(temp: int) -> str:
     return '+' + str(temp) if temp > 0 else str(temp)
 
 
+def get_weak_keyboard(days, user, lat=None, lon=None) -> map:
+    return map(lambda v: [InlineKeyboardButton(v, callback_data="date," + v + ",lat:" + str(
+        user.lat if lat is None else lat) + "|lon:" + str(
+        user.lon if lon is None else lon))], days.keys())
+
+
 def send_get_weather_request(lat, lon) -> str:
     return requests.get(
-        url=WEATHER_API_URL + "?lat=" + str(lat) + "&lon=" + str(
-            lon) + "&appid=" + WEATHER_API_KEY + "&lang=ru&units=metric").json()
+        url=WEATHER_API_URL +
+            "?lat={}"
+            "&lon={}"
+            "&appid={}"
+            "&lang=ru"
+            "&units=metric".format(lat, lon, WEATHER_API_KEY)
+    ).json()
 
 
 def get_days_from_response(req) -> dict:

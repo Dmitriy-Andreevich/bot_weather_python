@@ -2,11 +2,11 @@
 from PIL import ImageFont
 
 ### BOT START
-BOT_TOKEN = '817721430:AAHyw74OKb_YRI86yXEX3V4isziBwtNhorM'
+BOT_TOKEN = '817721430:AAE_P9ytcgz3skzPV7jqiZceB8yy-O2Bgpk' # 817721430:AAE_P9ytcgz3skzPV7jqiZceB8yy-O2Bgpk
 ### BOT START
 
 ### WEATHER API START
-WEATHER_API_KEY = "366584d072bea4f118482512bd536473"
+WEATHER_API_KEY = "7d591840fba74434fc81156186ec42c3" # 7d591840fba74434fc81156186ec42c3
 WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/forecast"
 WEATHER_IMAGE_URL = "http://openweathermap.org/img/wn/"
 ### WEATHER API START
@@ -63,8 +63,16 @@ CHANGE_LOCATION_TEXT = "Для смены домашней локации про
 SUBSCRIBE_CALL_TEXT = "Подпишись и получай свежую и актуальную информацию в твоем регионе!"
 HELP_TEXT = "Информация об основных функциях бота"
 
+
+TEXT_COMMAND_NOT_FOUND = "Наверное вы ошиблись"
 ERROR_HOME_LOCATION_MESSAGE = "Добавьте домашнюю локацию. Просто отправьте свою локацию боту. И выберите соответствующий пункт"
 
+REGION_WEATHER_ON_DAY_TEXT = "Погода в регионе на сутки"
+REGION_WEATHER_ON_WEAK_TEXT = "Погода на 6 дней"
+SET_HOME_LOCATION_TEXT = "Установить домашнюю локацию"
+REFRESH_HOME_LOCATION_TEXT = "Обновить домашнюю локацию"
+HOME_LOCATION_REFRESH_SUCCESS = "Домашняя локация обновлена"
+SELECT_ACTION_TEXT = "Выберите действие."
 SUBSCRIPTION_ON = "Вы подписались на рассылку"
 SUBSCRIPTION_OFF = "Вы отписались от рассылки погоды"
 ### BUTTONS END

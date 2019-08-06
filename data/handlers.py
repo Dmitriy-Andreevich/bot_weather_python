@@ -36,7 +36,7 @@ def text_handler(bot, update):
         elif update.message.text == WEATHER_SUBSCRIBE_BUTTON_TEXT:
             subscribe(bot, update)
         else:
-            bot.send_message(chat_id=update.message.chat.id, text="Наверное вы ошиблись")
+            bot.send_message(chat_id=update.message.chat.id, text=TEXT_COMMAND_NOT_FOUND)
 
     except UserWarning as error:
         bot.send_message(chat_id=update.message.chat.id, text=str(error))
@@ -62,26 +62,28 @@ def location_handler(bot, update):
     keyboard = []
 
     if not user.is_home_ready:
-        keyboard.append([InlineKeyboardButton("Установить домашнюю локацию",
+
+        keyboard.append([InlineKeyboardButton(SET_HOME_LOCATION_TEXT,
                                               callback_data="home,lat:" + str(
                                                   update.message.location.latitude) + "|lon:" + str(
                                                   update.message.location.longitude))])
     else:
-        keyboard.append([InlineKeyboardButton("Обновить домашнюю локацию",
+        keyboard.append([InlineKeyboardButton(REFRESH_HOME_LOCATION_TEXT,
                                               callback_data="home,lat:" + str(
                                                   update.message.location.latitude) + "|lon:" + str(
                                                   update.message.location.longitude))])
 
-    keyboard.append([InlineKeyboardButton("Погода в регионе на сутки",
+    keyboard.append([InlineKeyboardButton(REGION_WEATHER_ON_DAY_TEXT,
                                           callback_data="day,lat:" + str(
                                               update.message.location.latitude) + "|lon:" + str(
                                               update.message.location.longitude))])
-    keyboard.append([InlineKeyboardButton("Погода на 6 дней",
+
+    keyboard.append([InlineKeyboardButton(REGION_WEATHER_ON_WEAK_TEXT,
                                           callback_data="week,lat:" + str(
                                               update.message.location.latitude) + "|lon:" + str(
                                               update.message.location.longitude))])
 
-    update.message.reply_text("Выберите действие.", reply_markup=InlineKeyboardMarkup(keyboard))
+    update.message.reply_text(SELECT_ACTION_TEXT, reply_markup=InlineKeyboardMarkup(keyboard))
 
 
 def button(bot, update):
@@ -94,7 +96,7 @@ def button(bot, update):
         if elements[0] == "home":
             coord = elements[1].split("|")
             update_user_location(chat_id=chat_id, lat=coord[0].split(":")[1], lon=coord[1].split(":")[1])
-            HOME_DIRECTORY_REFRESH_TEXT = "Домашняя локация обновлена"
+            HOME_DIRECTORY_REFRESH_TEXT = HOME_LOCATION_REFRESH_SUCCESS
             update.callback_query.message.reply_text("%s" % HOME_DIRECTORY_REFRESH_TEXT)
         elif elements[0] == "day":
             coord = elements[1].split("|")
@@ -110,6 +112,5 @@ def button(bot, update):
             sub_news(bot, update.callback_query)
         elif elements[0] == "unsub":
             unsub_news(bot, update.callback_query)
-
     except Exception as er:
         print(er)

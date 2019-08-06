@@ -12,7 +12,7 @@ TEMP_IMG_NAME = 'background.png'
 
 def create_weather_image(req):
     file = BytesIO()
-    background = Image.open('%s' % BACKGROUND_IMAGE).convert('RGBA')
+    background = Image.open(BACKGROUND_IMAGE).convert('RGBA')
     background.thumbnail((BG_WIDTH, BG_HEIGHT), Image.ANTIALIAS)
     paint_layer = ImageDraw.Draw(background)
 

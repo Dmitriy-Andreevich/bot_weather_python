@@ -6,18 +6,18 @@ from telegram import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMa
 from data.image_drawer import create_weather_image
 from data.models.user import add_user_if_not_exist, get_user_by_chat_id
 from data.properties import *
-from data.util import get_request_data, get_user_valid_location
+from data.util import get_request_data, get_user_valid_location, get_weak_keyboard
 
 
 def start(bot, update):
     add_user_if_not_exist(update.message.chat.id)
-    kk = [[WEATHER_TODAY_BUTTON_TEXT, WEATHER_5_DAY_BUTTON_TEXT],
+    main_keyboard = [[WEATHER_TODAY_BUTTON_TEXT, WEATHER_5_DAY_BUTTON_TEXT],
           [PROFILE_BUTTON_TEXT, HELP_BUTTON_TEXT],
           [WEATHER_SUBSCRIBE_BUTTON_TEXT]]
     bot.send_message(chat_id=update.message.chat.id,
                      text='Привет, {}'.format(
                          update.message.from_user.first_name) + '.\nПожалуйста, выбери команду на клавиатуре снизу',
-                     reply_markup=ReplyKeyboardMarkup(kk))
+                     reply_markup=ReplyKeyboardMarkup(main_keyboard))
 
 
 def subscribe(bot, update):
@@ -82,12 +82,6 @@ def request_validation(chat_id, lat, lon):
     valid_lat, valid_lon = get_user_valid_location(lat, lon, user=get_user_by_chat_id(chat_id))
     days, req, user = get_request_data(chat_id, valid_lat, valid_lon)
     return days, req, user
-
-
-def get_weak_keyboard(days, user, lat=None, lon=None) -> map:
-    return map(lambda v: [InlineKeyboardButton(v, callback_data="date," + v + ",lat:" + str(
-        user.lat if lat is None else lat) + "|lon:" + str(
-        user.lon if lon is None else lon))], days.keys())
 
 
 def help_me(bot, update):
