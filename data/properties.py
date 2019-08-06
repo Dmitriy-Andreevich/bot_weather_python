@@ -2,11 +2,11 @@
 from PIL import ImageFont
 
 ### BOT START
-BOT_TOKEN = '817721430:AAE_P9ytcgz3skzPV7jqiZceB8yy-O2Bgpk' # 817721430:AAE_P9ytcgz3skzPV7jqiZceB8yy-O2Bgpk
+BOT_TOKEN = '817721430:AAE_P9ytcgz3skzPV7jqiZceB8yy-O2Bgpk'
 ### BOT START
 
 ### WEATHER API START
-WEATHER_API_KEY = "7d591840fba74434fc81156186ec42c3" # 7d591840fba74434fc81156186ec42c3
+WEATHER_API_KEY = "7d591840fba74434fc81156186ec42c3"
 WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/forecast"
 WEATHER_IMAGE_URL = "http://openweathermap.org/img/wn/"
 ### WEATHER API START
